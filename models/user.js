@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   username: String,
   phoneNumber: String,
-  userType: String,
+  userType: String, // mongoose enum
   restaurant: {
     name: String,
     description: String,
