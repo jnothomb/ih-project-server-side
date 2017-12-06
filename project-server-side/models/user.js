@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   email: String,
   phoneNumber: String,
-  userType: String,
+  userType: String
   // restaurant: {
   //   name: String,
   //   description: String,
@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
   //   category: String
 }
 
-});
+);
 
 const User = mongoose.model("User", userSchema);
 
