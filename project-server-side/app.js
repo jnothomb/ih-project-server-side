@@ -13,7 +13,7 @@ mongoose.connect("mongodb://localhost/final-project", {
   useMongoClient: true
 });
 
-// const auth = require("./routes/auth");
+const auth = require("./routes/auth");
 // const business = require("./routes/business");
 // const meals = require("./routes/meals");
 const restaurants = require("./routes/restaurants");
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// app.use("/auth", auth);
+app.use("/auth", auth);
 // app.use("/", business);
 // app.use("/", meals);
 app.use("/", restaurants);
