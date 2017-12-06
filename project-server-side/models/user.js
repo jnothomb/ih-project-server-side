@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     category: String
   }
 
-});
+);
 
 const User = mongoose.model("User", userSchema);
 
