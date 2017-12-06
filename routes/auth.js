@@ -3,7 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 
-const response = require("./helpers/response");
+const response = require("../helpers/response");
 const User = require("../models/user");
 
 router.post("/login", (req, res, next) => {
