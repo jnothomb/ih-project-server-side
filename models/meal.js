@@ -10,6 +10,11 @@ const mealSchema = new mongoose.Schema({
     ref: "User"
   },
   availablePortions: String
+}, {
+  timestamps: {
+    createdAt: "created_at",
+    updatedAt: "updated_at"
+  }
 });
 
 const Meal = mongoose.model("Meal", mealSchema);

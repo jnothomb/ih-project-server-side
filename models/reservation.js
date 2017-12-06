@@ -13,6 +13,10 @@ const reservationSchema = new mongoose.Schema({
     ref: "Meal"
   },
   portions: Number
+}, {
+  timestamps: {
+    createdAt: "created_at"
+  }
 });
 
 const Reservation = mongoose.model("Reservation", reservationSchema);
