@@ -7,9 +7,9 @@ const response = require("../helpers/response");
 const User = require("../models/user");
 
 router.post("/login", (req, res, next) => {
-  if (req.user) {
-    return response.forbidden();
-  }
+  // if (req.user) {
+  //   return response.forbidden(req, res);
+  // }
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(err);
@@ -28,32 +28,23 @@ router.post("/login", (req, res, next) => {
 
 router.post("/signup", (req, res, next) => {
   if (req.user) {
-    return response.forbidden();
+    return response.forbidden(req, res);
   }
   const {
-    username,
     email,
-    password,
-    phoneNumber
-
+    password
   } = req.body;
 
-  if (!username) {
-    return response.unprocessable(req, res, "Missing mandatory field \"Username\".");
-  }
   if (!password) {
     return response.unprocessable(req, res, "Missing mandatory field \"Password\".");
   }
   if (!email) {
     return response.unprocessable(req, res, "Missing mandatory field \"Email\".");
   }
-  if (!phoneNumber) {
-    return response.unprocessable(req, res, "Missing mandatory field \"Phone Number\".");
-  }
 
   User.findOne({
-    username
-  }, "username", (err, userExists) => {
+    email
+  }, "email", (err, userExists) => {
     if (err) {
       return next(err);
     }
@@ -65,10 +56,9 @@ router.post("/signup", (req, res, next) => {
     const hashPass = bcrypt.hashSync(password, salt);
 
     const newUser = new User({
-      username,
       email,
-      password: hashPass,
-      phoneNumber
+      password: hashPass
+
     });
 
     newUser.save((err) => {
@@ -79,7 +69,7 @@ router.post("/signup", (req, res, next) => {
         if (err) {
           return next(err);
         }
-        return response.data(req, res, newUser.asData());
+        return response.data(req, res, newUser);
       });
     });
   });
