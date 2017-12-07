@@ -1,8 +1,10 @@
+// TO SEED, RUN: node bin/seed/restaurants.js
+
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
-const User = require("../models/user").User;
-mongoose.connect("mongodb://localhost/surf-tripper", { useMongoClient: true });
+const User = require("../../models/user").User;
+mongoose.connect("mongodb://localhost/final-project-db", { useMongoClient: true });
 
 var salt = bcrypt.genSaltSync(bcryptSalt);
 const password = "ironhack";
