@@ -19,7 +19,7 @@ const configurePassport = require("./helpers/passport");
 
 app.use(cors({
   credentials: true,
-  origin: ["http://localhost:3001"]
+  origin: ["http://localhost:4200"]
 }));
 
 app.use(session({
@@ -46,7 +46,7 @@ app.use(cookieParser());
 
 // --- CONNECT TO MONGOOSE ---
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/final-project", {
+mongoose.connect("mongodb://localhost/final-project-db", {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
   useMongoClient: true
