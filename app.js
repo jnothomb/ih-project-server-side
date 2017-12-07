@@ -57,12 +57,10 @@ mongoose.connect("mongodb://localhost/final-project-db", {
 const auth = require("./routes/auth");
 const restaurants = require("./routes/restaurants");
 // const business = require("./routes/business");
-// const meals = require("./routes/meals");
 
 app.use("/auth", auth);
 app.use("/", restaurants);
 // app.use("/", business);
-// app.use("/", meals);
 
 // ---- ERROR HANDLING ----
 
