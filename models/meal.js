@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
+const ObjectId = Schema.Types.ObjectId;
 
 const mealSchema = new mongoose.Schema({
   name: String,
   portions: Number,
-  restaurant: String,
+  restaurant: {
+    // objectID ref User
+    type: ObjectId,
+    ref: "User"
+  },
   availablePortions: String
 });
 

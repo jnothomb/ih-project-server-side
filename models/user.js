@@ -6,7 +6,12 @@ const userSchema = new mongoose.Schema({
   password: String,
   username: String,
   phoneNumber: String,
-  userType: String,
+  userType: {
+    // mongoose enum
+    type: String,
+    enum: ["restaurant", "individual"],
+    default: "individual"
+  },
   restaurant: {
     name: String,
     description: String,
