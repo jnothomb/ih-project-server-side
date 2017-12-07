@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   name: String,
   password: String,
   email: String,
   phoneNumber: String,
-  userType: {
-    // mongoose enum
+  type: {
     type: String,
     enum: ["restaurant", "individual"],
     default: "individual"
