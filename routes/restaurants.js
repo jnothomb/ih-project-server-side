@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+const response = require("../helpers/response");
 const User = require("../models/user");
 const Meal = require("../models/meal");
 
@@ -10,7 +11,7 @@ router.get("/restaurants", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.json(restaurantList);
+    response.data(req, res, restaurantList);
   });
 });
 
@@ -19,7 +20,10 @@ router.get("/restaurants/:id", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.json(theRestaurant);
+    if (!theRestaurant) {
+      return response.notFound(req, res);
+    }
+    response.data(req, res, theRestaurant);
   });
 });
 
@@ -28,7 +32,7 @@ router.get("restaurants/:id/meals", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.json(mealsList);
+    response.data(req, res, mealsList);
   });
 });
 
@@ -37,7 +41,10 @@ router.get("meal/:id", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.json(theMeal);
+    if (!theMeal) {
+      return response.notFound(req, res);
+    }
+    response.data(req, res, theMeal);
   });
 });
 

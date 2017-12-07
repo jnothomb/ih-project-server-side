@@ -15,6 +15,14 @@ const app = express();
 const response = require("./helpers/response");
 const configurePassport = require("./helpers/passport");
 
+// --- CONNECT TO MONGOOSE ---
+mongoose.Promise = Promise;
+mongoose.connect("mongodb://localhost/final-project-db", {
+  keepAlive: true,
+  reconnectTries: Number.MAX_VALUE,
+  useMongoClient: true
+});
+
 // ---- APP SETUP ----
 
 app.use(cors({
@@ -44,14 +52,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// --- CONNECT TO MONGOOSE ---
-mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/final-project-db", {
-  keepAlive: true,
-  reconnectTries: Number.MAX_VALUE,
-  useMongoClient: true
-});
-
 // ---- CONFIGURING ROUTES ----
 
 const auth = require("./routes/auth");
@@ -66,8 +66,7 @@ app.use("/", restaurants);
 
 // catch 404 and forward to error handler
 app.use((req, res) => {
-  res.status(404);
-  res.json({ error: "not-found" });
+  response.notFound(req, res);
 });
 
 // error handler
@@ -76,8 +75,7 @@ app.use((err, req, res, next) => {
 
   // return the error page
   if (!res.headersSent) {
-    res.status(500);
-    res.json({ error: "unexpected" });
+    response.unexpectedError(req, res);
   }
 });
 

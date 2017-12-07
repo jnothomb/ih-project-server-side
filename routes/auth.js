@@ -82,7 +82,7 @@ router.post("/logout", (req, res) => {
 
 router.get("/me", (req, res) => {
   if (req.user) {
-    return response.data(req, res, req.user.asData());
+    return response.data(req, res, req.user);
   }
 
   return response.notFound(req, res);
