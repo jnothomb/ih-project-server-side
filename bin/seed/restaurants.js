@@ -3,7 +3,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
-const User = require("../../models/user").User;
+const User = require("../../models/user");
 mongoose.connect("mongodb://localhost/final-project-db", { useMongoClient: true });
 
 var salt = bcrypt.genSaltSync(bcryptSalt);
