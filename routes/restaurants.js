@@ -4,6 +4,7 @@ const router = express.Router();
 const response = require("../helpers/response");
 const User = require("../models/user");
 const Meal = require("../models/meal");
+const Reservation = require("../models/reservation");
 
 /* GET Phones listing. */
 router.get("/restaurants", (req, res, next) => {
@@ -27,8 +28,8 @@ router.get("/restaurants/:id", (req, res, next) => {
   });
 });
 
-router.get("restaurants/:id/meals", (req, res, next) => {
-  Meal.find({ restaurant: "req.params.id" }, (err, mealsList) => {
+router.get("/restaurants/:id/meals", (req, res, next) => {
+  Meal.find({ restaurant: req.params.id }, (err, mealsList) => {
     if (err) {
       return next(err);
     }
@@ -36,7 +37,8 @@ router.get("restaurants/:id/meals", (req, res, next) => {
   });
 });
 
-router.get("meal/:id", (req, res, next) => {
+router.get("/meal/:id", (req, res, next) => {
+  // @todo populate the resxtaurant
   Meal.findById(req.params.id, (err, theMeal) => {
     if (err) {
       return next(err);
@@ -45,6 +47,25 @@ router.get("meal/:id", (req, res, next) => {
       return response.notFound(req, res);
     }
     response.data(req, res, theMeal);
+  });
+});
+
+router.post("/meal/:id/confirm", (req, res, next) => {
+  const client = req.user._id;
+  const meal = req.params.id;
+  const portions = req.body.portions;
+
+  const newReservation = new Reservation({
+    client,
+    meal,
+    portions
+  });
+
+  newReservation.save((err) => {
+    if (err) {
+      return next(err);
+    }
+    return response.data(req, res, newReservation);
   });
 });
 
