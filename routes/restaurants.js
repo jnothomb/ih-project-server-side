@@ -27,7 +27,7 @@ router.get("/restaurants/:id", (req, res, next) => {
   });
 });
 
-router.get("restaurants/:id/meals", (req, res, next) => {
+router.get("/restaurants/:id/meals", (req, res, next) => {
   Meal.find({ restaurant: "req.params.id" }, (err, mealsList) => {
     if (err) {
       return next(err);
@@ -36,7 +36,7 @@ router.get("restaurants/:id/meals", (req, res, next) => {
   });
 });
 
-router.get("meal/:id", (req, res, next) => {
+router.get("/meal/:id", (req, res, next) => {
   Meal.findById(req.params.id, (err, theMeal) => {
     if (err) {
       return next(err);
