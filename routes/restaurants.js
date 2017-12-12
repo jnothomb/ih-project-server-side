@@ -74,4 +74,21 @@ router.post("/meal/:id/confirm", (req, res, next) => {
   });
 });
 
+router.get("/edit-profile/:id", (req, res, next) => {
+  User.findById(req.params.id, (err, theProfile) => {
+    if (err) {
+      return next(err);
+    }
+    response.data(req, res, theProfile);
+  });
+});
+
+router.post("/edit-profile/:id", (req, res, next) => {
+  User.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, phoneNumber: req.body.phoneNumber, email: req.body.email } }, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+  });
+});
+
 module.exports = router;
