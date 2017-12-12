@@ -61,11 +61,16 @@ router.post("/meal/:id/confirm", (req, res, next) => {
     portions
   });
 
-  newReservation.save((err) => {
+  Meal.findByIdAndUpdate(meal, { $inc: { "availablePortions": -portions } }, (err, result) => {
     if (err) {
       return next(err);
     }
-    return response.data(req, res, newReservation);
+    newReservation.save((err) => {
+      if (err) {
+        return next(err);
+      }
+      return response.data(req, res, newReservation);
+    });
   });
 });
 

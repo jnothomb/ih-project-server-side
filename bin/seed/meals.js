@@ -8,19 +8,19 @@ const seededMeals = [
   {
     name: "Citrus Salmon Temaki",
     portions: 5,
-    restaurant: "5a2aaf0b260a9ecd9812a9c0",
+    restaurant: "5a2ab9235772271d2056943d",
     availablePortions: 5
   },
   {
     name: "Spicy Tuna Temaki",
     portions: 3,
-    restaurant: "5a2aaf0b260a9ecd9812a9c0",
+    restaurant: "5a2ab9235772271d2056943d",
     availablePortions: 3
   },
   {
     name: "Black King Prawn Temaki",
     portions: 10,
-    restaurant: "5a2aaf0b260a9ecd9812a9c0",
+    restaurant: "5a2ab9235772271d2056943d",
     availablePortions: 5
   }
 ];
