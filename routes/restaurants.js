@@ -39,7 +39,7 @@ router.get("/restaurants/:id/meals", (req, res, next) => {
 
 router.get("/meal/:id", (req, res, next) => {
   // @todo populate the resxtaurant
-  Meal.findById(req.params.id, (err, theMeal) => {
+  Meal.findById(req.params.id).populate("restaurant").exec((err, theMeal) => {
     if (err) {
       return next(err);
     }

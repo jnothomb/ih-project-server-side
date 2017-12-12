@@ -5,12 +5,13 @@ const ObjectId = Schema.Types.ObjectId;
 const mealSchema = new mongoose.Schema({
   name: String,
   portions: Number,
+  price: Number,
   restaurant: {
     // objectID ref User
     type: ObjectId,
     ref: "User"
   },
-  availablePortions: String
+  availablePortions: Number
 }, {
   timestamps: {
     createdAt: "created_at",
