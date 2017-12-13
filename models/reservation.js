@@ -8,6 +8,10 @@ const reservationSchema = new mongoose.Schema({
     type: ObjectId,
     ref: "User"
   },
+  restaurant: {
+    type: ObjectId,
+    ref: "User"
+  },
   meal: {
     // objectid ref Meal
     type: ObjectId,

@@ -32,7 +32,8 @@ router.post("/signup", (req, res, next) => {
   }
   const {
     email,
-    password
+    password,
+    phoneNumber
   } = req.body;
 
   if (!password) {
@@ -40,6 +41,9 @@ router.post("/signup", (req, res, next) => {
   }
   if (!email) {
     return response.unprocessable(req, res, "Missing mandatory field \"Email\".");
+  }
+  if (!phoneNumber) {
+    return response.unprocessable(req, res, "Missing mandatory field \"phone number\".");
   }
 
   User.findOne({
@@ -57,8 +61,8 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       email,
-      password: hashPass
-
+      password: hashPass,
+      phoneNumber
     });
 
     newUser.save((err) => {

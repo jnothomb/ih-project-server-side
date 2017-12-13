@@ -13,11 +13,11 @@ const mealSchema = new mongoose.Schema({
   },
   availablePortions: Number
 }, {
-  timestamps: {
-    createdAt: "created_at",
-    updatedAt: "updated_at"
-  }
-});
+    timestamps: {
+      createdAt: "created_at",
+      updatedAt: "updated_at"
+    }
+  });
 
 const Meal = mongoose.model("Meal", mealSchema);
 

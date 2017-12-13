@@ -6,7 +6,6 @@ const User = require("../models/user");
 const Meal = require("../models/meal");
 const Reservation = require("../models/reservation");
 
-/* GET Phones listing. */
 router.get("/restaurants", (req, res, next) => {
   User.find({ type: "restaurant" }, (err, restaurantList) => {
     if (err) {
@@ -38,7 +37,6 @@ router.get("/restaurants/:id/meals", (req, res, next) => {
 });
 
 router.get("/meal/:id", (req, res, next) => {
-  // @todo populate the resxtaurant
   Meal.findById(req.params.id).populate("restaurant").exec((err, theMeal) => {
     if (err) {
       return next(err);
@@ -53,11 +51,13 @@ router.get("/meal/:id", (req, res, next) => {
 router.post("/meal/:id/confirm", (req, res, next) => {
   const client = req.user._id;
   const meal = req.params.id;
-  const portions = req.body.portions;
+  const restaurant = req.body.restaurant;
+  const portions = req.body.portions.quantity;
 
   const newReservation = new Reservation({
     client,
     meal,
+    restaurant,
     portions
   });
 
@@ -88,6 +88,16 @@ router.post("/edit-profile/:id", (req, res, next) => {
     if (err) {
       return next(err);
     }
+  });
+});
+
+router.get("/reservations", (req, res, next) => {
+  Reservation.find({ client: req.user._id }).populate("meal restaurant").exec((err, reservations) => {
+    if (err) {
+      return next(err);
+    }
+    console.log(reservations);
+    response.data(req, res, reservations);
   });
 });
 
