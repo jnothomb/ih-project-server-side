@@ -31,11 +31,15 @@ router.post("/signup", (req, res, next) => {
     return response.forbidden(req, res);
   }
   const {
+    name,
     email,
     password,
     phoneNumber
   } = req.body;
 
+  if (!name) {
+    return response.unprocessable(req, res, "Missing mandatory field \"Name\".");
+  }
   if (!password) {
     return response.unprocessable(req, res, "Missing mandatory field \"Password\".");
   }
@@ -60,6 +64,7 @@ router.post("/signup", (req, res, next) => {
     const hashPass = bcrypt.hashSync(password, salt);
 
     const newUser = new User({
+      name,
       email,
       password: hashPass,
       phoneNumber

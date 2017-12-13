@@ -83,11 +83,26 @@ router.get("/edit-profile/:id", (req, res, next) => {
   });
 });
 
-router.post("/edit-profile/:id", (req, res, next) => {
-  User.findByIdAndUpdate(req.params.id, { $set: { name: req.body.name, phoneNumber: req.body.phoneNumber, email: req.body.email } }, (err, result) => {
+router.post("/edit-profile", (req, res, next) => {
+  const updatedProfile = {
+    name: req.body.name,
+    phoneNumber: req.body.phoneNumber,
+    email: req.body.email
+  };
+  User.findOne({ _id: req.user._id }, (err, data) => {
     if (err) {
       return next(err);
     }
+    data.name = updatedProfile.name;
+    data.phoneNumber = updatedProfile.phoneNumber;
+    data.email = updatedProfile.email;
+
+    data.save((err, result) => {
+      if (err) {
+        return next(err);
+      }
+      response.data(req, res, data);
+    });
   });
 });
 
