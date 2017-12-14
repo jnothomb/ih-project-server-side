@@ -21,6 +21,7 @@ const listedRestaurants = [
       description: "London’s first temakeria, Yoobi, takes inspiration from Brazil and pushes the sushi experience in an exciting new direction. Our freshly made temaki rolls, featuring uniquely developed flavour combinations, are served to eat in or enjoy on the go. Our range of creative recipes use the highest quality natural ingredients; from our own rice blend to the finest sustainably-sourced fish and from fresh wasabi to locally sourced vegetables.",
       photo: "https://scontent.fmad3-2.fna.fbcdn.net/v/t31.0-8/12967995_1048912348519976_3949127771077935711_o.jpg?oh=b56934ca11da54b2fcd969e0df048bae&oe=5ACF475B",
       address: "38 Lexington Street. W1F 0LL. London",
+      mapsLink: "https://www.google.es/maps/place/Yoobi/@51.5124984,-0.1376205,15.88z/data=!4m8!1m2!2m1!1syoobi!3m4!1s0x487604d48e45b743:0x9851503530225c3c!8m2!3d51.5129062!4d-0.1360588",
       category: "Sushi"
     }
   },

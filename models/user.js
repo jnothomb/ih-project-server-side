@@ -16,6 +16,7 @@ const userSchema = new Schema({
     description: String,
     photo: String,
     address: String,
+    mapsLink: String,
     category: String
   }
 }, {
