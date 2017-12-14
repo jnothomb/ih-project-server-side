@@ -116,4 +116,15 @@ router.get("/reservations", (req, res, next) => {
   });
 });
 
+router.get("/category/:nameOfCategory", (req, res, next) => {
+  console.log("req.params", req.params);
+  User.find({ "restaurant.category": req.params.nameOfCategory }, (err, users) => {
+    if (err) {
+      return next(err);
+    }
+    console.log("filter by category", users);
+    response.data(req, res, users);
+  });
+});
+
 module.exports = router;
