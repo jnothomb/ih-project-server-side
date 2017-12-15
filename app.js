@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express = require("express");
 const path = require("path");
 const logger = require("morgan");
@@ -17,7 +20,7 @@ const configurePassport = require("./helpers/passport");
 
 // --- CONNECT TO MONGOOSE ---
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/final-project-db", {
+mongoose.connect(process.env.MONGO_URI, {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
   useMongoClient: true
@@ -27,7 +30,7 @@ mongoose.connect("mongodb://localhost/final-project-db", {
 
 app.use(cors({
   credentials: true,
-  origin: ["http://localhost:4200"]
+  origin: [process.env.CLIENT_URL]
 }));
 
 app.use(session({
