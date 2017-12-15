@@ -20,7 +20,7 @@ const configurePassport = require("./helpers/passport");
 
 // --- CONNECT TO MONGOOSE ---
 mongoose.Promise = Promise;
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
   useMongoClient: true
